@@ -1,0 +1,39 @@
+apply plugin: 'java'
+
+defaultTasks 'clean', 'test'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'com.codeborne:selenide-appium:2.0.3'
+    implementation 'org.junit.jupiter:junit-jupiter:5.8.2'
+    implementation 'commons-io:commons-io:2.11.0'
+    implementation 'org.apache.commons:commons-lang3:3.12.0'
+
+    implementation 'org.projectlombok:lombok:1.18.24'
+    annotationProcessor 'org.projectlombok:lombok:1.18.24'
+
+    implementation 'com.zaxxer:HikariCP:5.0.1'
+    implementation 'com.h2database:h2:2.1.212'
+
+    implementation 'com.google.code.gson:gson:2.9.0'
+
+    implementation 'org.springframework.boot:spring-boot-starter-web:2.6.1'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.6.1'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test:2.6.1'
+    implementation 'javax.xml.bind:jaxb-api:2.3.1'
+
+    implementation 'com.github.javafaker:javafaker:1.0.2'
+}
+
+[compileJava, compileTestJava]*.options.collect { options -> options.encoding = 'UTF-8' }
+[compileJava, compileTestJava]*.options.collect { options -> options.debug = true }
+[compileJava, compileTestJava]*.sourceCompatibility = 1.8
+[compileJava, compileTestJava]*.targetCompatibility = 1.8
+
+test {
+    useJUnitPlatform()
+    systemProperties = ['file.encoding': 'UTF-8']
+}
