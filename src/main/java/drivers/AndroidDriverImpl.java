@@ -1,6 +1,7 @@
 package drivers;
 
 import com.codeborne.selenide.WebDriverProvider;
+import config.AppiumConfig;
 import io.appium.java_client.android.AndroidDriver;
 import lombok.SneakyThrows;
 import org.openqa.selenium.WebDriver;
@@ -14,7 +15,7 @@ public class AndroidDriverImpl implements WebDriverProvider {
   @Override
   @SneakyThrows
   public WebDriver createDriver(@Nonnull org.openqa.selenium.Capabilities capabilities) {
-    return new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), Capabilities.getAppiumCapabilities());
+    return new AndroidDriver(new URL(AppiumConfig.BASE_URL), Capabilities.getAppiumCapabilities());
   }
 
 }
